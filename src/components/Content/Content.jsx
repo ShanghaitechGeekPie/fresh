@@ -39,7 +39,7 @@ class Content extends React.Component {
     );
 
     const content2 = (this.props.level1 == '问答')?
-      <div ref="myTextInput" className="ds-thread" data-thread-key="0" data-title="上海科技大学 新生手册" data-url="zone.geekpie.org"></div> :
+      <div ref="myTextInput" className="ds-thread" data-thread-key="index" data-title="上海科技大学 新生手册" data-url="zone.geekpie.org"></div> :
         undefined;
 
     return (
