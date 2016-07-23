@@ -16,4 +16,4 @@ RUN mkdir /logs
 RUN mkdir /fresh
 COPY . /fresh
 
-RUN cd /fresh && npm install && npm run build && mv dist/assets/index.html dist/
+RUN cd /fresh && npm install && npm run build && mv dist/assets/index.html dist/ && rm -rf node_modules
