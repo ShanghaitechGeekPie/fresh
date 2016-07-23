@@ -4,7 +4,9 @@ MAINTAINER eastpiger @ Geek Pie Association
 
 EXPOSE 80
 
-RUN curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+RUN apt-get install curl -y
+
+RUN curl -sL https://deb.nodesource.com/setup_4.x | -E bash -
 RUN apt-get install -y nodejs
 
 COPY nginx.conf /etc/nginx/nginx.conf
