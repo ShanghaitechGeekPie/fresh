@@ -4,7 +4,7 @@ MAINTAINER eastpiger @ Geek Pie Association
 
 EXPOSE 80
 
-RUN apt-get install curl -y
+RUN apt-get update && apt-get install curl -y
 
 RUN curl -sL https://deb.nodesource.com/setup_4.x | -E bash -
 RUN apt-get install -y nodejs
