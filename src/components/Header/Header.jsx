@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import QueueAnim from 'rc-queue-anim';
 import classnames from 'classnames';
 import { Link } from 'react-router';
 import { Row, Col, Button, Icon } from 'antd';
@@ -38,22 +39,28 @@ class Header extends React.Component {
       <div><b>新<br />生<br />手<br />册</b></div>;
 
     const level1ContainerCls = classnames({
-      [styles.level1_container]: (this.props.level0!=undefined),
+      [styles.level1_container]: true,
+      [styles.level1_container_show]: (this.props.level0!=undefined),
     });
 
     const level1Container = (this.props.level0!=undefined)?
-      <Row className={level1ContainerCls}>
-        <Col span={24} className={styles.logo_container}>
-          <Link to={'/'+this.props.level0}>
-            {this.props.level0}
-          </Link>
-        </Col>
-        <Col span={24} className={styles.menu_container}>
-          <ul>
-            {menu1}
-          </ul>
-        </Col>
-      </Row> : undefined;
+        <QueueAnim
+          delay={[500, 0]}
+          type={['bottom', 'top']}
+          ease={['easeOutQuart', 'easeInOutQuart']}>
+          <div key={this.props.level0}>
+            <Col span={24} className={styles.logo_container}>
+              <Link to={'/'+this.props.level0}>
+                {this.props.level0}
+              </Link>
+            </Col>
+            <Col span={24} className={styles.menu_container}>
+              <ul>
+                {menu1}
+              </ul>
+            </Col>
+          </div>
+        </QueueAnim>: undefined;
 
     return (
       <div>
@@ -74,7 +81,9 @@ class Header extends React.Component {
             All Rights Reserved · 2016<br />
           </Col>
         </Row>
-        {level1Container}
+        <Row className={level1ContainerCls}>
+          {level1Container}
+        </Row>
       </div>
     );
   }

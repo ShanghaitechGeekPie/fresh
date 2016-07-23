@@ -30,9 +30,16 @@
   bottom: 0;
   width: 180px;
   color: white;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0);
+  display: none;
   transition: all 0.3s;
   padding: 50px 0px;
+}
+
+.level1_container_show {
+  display: block;
+  background: rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
 }
 
 .level1_container:hover {
@@ -87,10 +94,18 @@
   background: rgba(0, 0, 0, 0.2);
   transition: all 0.3s;
 }
+
+.level0_container_thin .info_container {
+  transition: all 0.3s;
+  opacity: 0;
+}
+
 .info_container{
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   text-align: center;
+  transition: all 0.3s;
+  opacity: 1;
 }

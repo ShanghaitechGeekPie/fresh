@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import Todos from './Todos/Todos';
-import { MainLayout, Level0Layout, Level1Layout } from '../layouts/MainLayout/MainLayout';
+import MainLayout from '../layouts/MainLayout/MainLayout';
 import parseMd from '../parseMd/parseMd';
 import NotFound from './NotFound';
 
@@ -12,40 +11,23 @@ console.log(data);
 
 class App extends React.Component {
   render() {
+    if (this.props.level1)
+      if (!((this.props.params.level0 in data.children) &&
+        (this.props.params.level1 in data.children[this.props.params.level0].children)))
+      return (
+        <NotFound />
+      );
+
+    if (this.props.level0)
+      if (!(this.props.params.level0 in data.children))
+        return (
+          <NotFound />
+        );
+
     return (
-      <MainLayout data={data} />
+        <MainLayout data={data} level0={this.props.params.level0} level1={this.props.params.level1} />
     );
   }
 };
 
-class Level0App extends React.Component {
-  render() {
-    if (this.props.params.level0 in data.children)
-      return (
-        <Level0Layout data={data} level0={this.props.params.level0} />
-      );
-    else
-      return (
-        <NotFound />
-      );
-  }
-};
-
-class Level1App extends React.Component {
-  render() {
-    if ((this.props.params.level0 in data.children) && (this.props.params.level1 in data.children[this.props.params.level0].children))
-      return (
-        <Level1Layout data={data} level0={this.props.params.level0} level1={this.props.params.level1} />
-      );
-    else
-      return (
-        <NotFound />
-      );
-  }
-};
-
-export default {
-  'App': App,
-  'Level0App': Level0App,
-  'Level1App': Level1App,
-};
+export default App;

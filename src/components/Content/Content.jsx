@@ -4,20 +4,10 @@ import { Link } from 'react-router';
 import { Row, Col, Button, Icon } from 'antd';
 import QueueAnim from 'rc-queue-anim';
 import styles from './Content.less';
-const $ = require('jQuery');
 
 const img = require('./bg.jpg');
+
 class Content extends React.Component {
-  componentDidMount() {
-    this.componentDidUpdate();
-  }
-  componentDidUpdate() {
-    global.duoshuoQuery = {short_name:"shanghaitechzone"};
-    $.getScript('http://static.duoshuo.com/embed.js',function(){
-      el = React.findDOMNode(this.refs.myTextInput);
-      DUOSHUO.EmbedThread(el);
-    });
-  }
   render() {
     function getContent(data, prefix) {
       var temp = "";
@@ -39,13 +29,15 @@ class Content extends React.Component {
     );
 
     const content2 = (this.props.level1 == '问答')?
-      <div ref="myTextInput" className="ds-thread" data-thread-key="index" data-title="上海科技大学 新生手册" data-url="zone.geekpie.org"></div> :
+      <iframe src="/comment.html" allowtransparency="true" className={styles.duoshuo} /> :
         undefined;
 
     return (
       <div className={styles.container}>
         <QueueAnim
-          delay={[500, 0]}
+          duration={[450, 200]}
+          interval={[0, 0]}
+          delay={[250, 0]}
           type={['bottom', 'bottom']}
           ease={['easeOutQuart', 'easeInOutQuart']}>
             <div

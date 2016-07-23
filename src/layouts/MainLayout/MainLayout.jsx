@@ -10,45 +10,21 @@ import styles from './MainLayout.less';
 
 class MainLayout extends React.Component {
   render() {
-    return (
-      <div className={styles.normal}>
-        <Header data={this.props.data} level0={this.props.level0} />
-        <Loader data={this.props.data} />
-        <Background />
-        <Footer />
-      </div>
-    );
-  }
-};
-
-class Level0Layout extends React.Component {
-  render() {
-    return (
-      <div className={styles.normal}>
-        <Header data={this.props.data} level0={this.props.level0} />
-        <Loader data={this.props.data} level0={this.props.level0} />
-        <Background />
-        <Footer />
-      </div>
-    );
-  }
-};
-
-class Level1Layout extends React.Component {
-  render() {
+    const loader = (this.props.level1)?
+      undefined :
+      <Loader data={this.props.data} level0={this.props.level0} level1={this.props.level1}/>;
+    const content = (this.props.level1)?
+      <Content data={this.props.data} level0={this.props.level0} level1={this.props.level1} /> :
+      undefined;
     return (
       <div className={styles.normal}>
         <Header data={this.props.data} level0={this.props.level0} level1={this.props.level1}/>
-        <Content data={this.props.data} level0={this.props.level0} level1={this.props.level1} />
-        <Background />
+        {loader}
+        {content}
+        <Background level0={this.props.level0} />
         <Footer />
       </div>
     );
   }
 };
-
-export default {
-  'MainLayout': MainLayout,
-  'Level0Layout': Level0Layout,
-  'Level1Layout': Level1Layout,
-};
+export default MainLayout;

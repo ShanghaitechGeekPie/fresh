@@ -48,7 +48,7 @@ module.exports = function (webpackConfig) {
   }, {});
   webpackConfig.entry = Object.assign({}, webpackConfig.entry, newEntries);
 
-
+  
   webpackConfig['output'] = {
     path:  'dist/assets/',
     filename: "[name].js",
