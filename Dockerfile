@@ -4,7 +4,7 @@ MAINTAINER eastpiger @ Geek Pie Association
 
 EXPOSE 80
 
-RUN apt-get update && apt-get install curl -y && apt-get install gnupg
+RUN apt-get update && apt-get install curl -y && apt-get install gnupg -y
 
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
 RUN apt-get install -y nodejs
