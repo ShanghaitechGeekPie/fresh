@@ -16,6 +16,8 @@ RUN mkdir /logs
 RUN mkdir /fresh
 COPY . /fresh
 
+RUN npm config set registry http://nexus.daocloud.io/repository/daocloud-npm
+
 RUN cd /fresh \
   && npm install
 
