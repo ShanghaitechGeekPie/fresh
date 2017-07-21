@@ -9,6 +9,16 @@
   overflow: auto;
   padding: 0;
   margin: 0;
+  min-height: 100%;
+  @media screen and (max-width: 425px) {
+    width: 100%;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    overflow: visible;
+    z-index: 1;
+  }
 }
 
 .container {
@@ -21,6 +31,20 @@
   margin: 60px 40px;
   box-shadow: 1px 3px 12px rgba(0, 0, 0, 0.5);
   border-color: #e9e9e9;
+  @media screen and (max-width: 768px) {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    min-height: 100%;
+    height: auto;
+    margin: 0px;
+    padding: 20px 30px;
+    padding-top: 150px;
+  }
+  div {
+    position: relative;
+  }
 }
 
 .duoshuo {

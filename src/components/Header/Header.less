@@ -8,19 +8,41 @@
   background: rgba(0, 0, 0, 0.1);
   transition: all 0.3s;
   padding: 20px 0px;
+  @media screen and (max-width: 425px) {
+    width: 100%;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    z-index: 10;
+    background: transparent;
+  }
 }
 
 .level0_container:hover {
   background: rgba(0, 0, 0, 0.3);
+  @media screen and (max-width: 425px) {
+    background: transparent;
+  }
 }
 
 .level0_container_thin {
   width: 100px;
   background: rgba(0, 0, 0, 0.3);
+  @media screen and (max-width: 425px) {
+    width: auto;
+    height: 140px;
+    bottom: auto;
+    padding: 10px 0px
+  }
 }
 
 .level0_container_thin:hover {
   background: rgba(0, 0, 0, 0.4);
+  @media screen and (max-width: 425px) {
+    background: rgba(0, 0, 0, 0.3);
+  }
 }
 
 .level1_container {
@@ -34,12 +56,26 @@
   display: none;
   transition: all 0.3s;
   padding: 50px 0px;
+  @media screen and (max-width: 425px) {
+    width: 100%;
+    height: 60px;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 80px;
+    bottom: 0px;
+    z-index: 11;
+    padding: 0px;
+  }
 }
 
 .level1_container_show {
   display: block;
   background: rgba(0, 0, 0, 0.1);
   transition: all 0.3s;
+  @media screen and (max-width: 425px) {
+    background: rgba(0, 0, 0, 0.2);
+  }
 }
 
 .level1_container:hover {
@@ -54,6 +90,20 @@
   transition: all 0.3s;
 }
 
+.level0_container_thin .logo_container {
+  @media screen and (max-width: 425px) {
+    padding-left: 20px;
+    text-align: left;
+    img {
+      height: 64px;
+      width: auto;
+    }
+    div {
+      display: none;
+    }
+  }
+}
+
 .logo_container a {
   color: white;
 }
@@ -65,6 +115,12 @@
 
 .level1_container .logo_container {
   font-size: 24px;
+  @media screen and (max-width: 425px) {
+    text-align: left;
+    margin-top: -58px;
+    margin-left: 95px;
+    width: auto;
+  }
 }
 
 .logo_container img {
@@ -75,6 +131,48 @@
 
 .menu_container {
   text-align: center;
+  @media screen and (max-width: 425px) {
+    ul {
+      width: 200px;
+      margin: 0 auto;
+      li {
+        padding: 10px;
+        margin: 8px;
+        background: rgba(0, 0, 0, 0.6);
+      }
+    }
+  }
+}
+
+.level0_container_thin .menu_container {
+  @media screen and (max-width: 425px) {
+    display: none;
+  }
+}
+
+.level1_container .menu_container {
+  @media screen and (max-width: 425px) {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    overflow-x: scroll;
+    white-space: nowrap;
+    ul {
+      margin: 0px;
+      a {
+        li {
+          display: inline-block;
+          background: transparent;
+          line-height: 57px;
+          padding: 0px 10px;
+          margin: 0px;
+        }
+        &.active li {
+          border-bottom: 3px solid white;
+        }
+      }
+    }
+  }
 }
 
 .menu_container li{
