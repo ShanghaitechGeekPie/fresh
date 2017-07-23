@@ -19,6 +19,15 @@ class Header extends React.Component {
           <li dangerouslySetInnerHTML={{__html:this.props.data.children[i].name}} />
         </Link>
       )
+
+    menu.push(
+      <a href="http://asa.shanghaitech.edu.cn/fresh/" target="_blank">
+        <li>
+          <small>返回 迎新网</small>
+        </li>
+      </a>
+    );
+
     if (this.props.level0!=undefined) {
         const dataSet = this.props.data.children[this.props.level0].children;
         for (var i in dataSet)
