@@ -1,6 +1,6 @@
-FROM daocloud.io/nginx
+FROM nginx:latest
 
-MAINTAINER eastpiger @ Geek Pie Association
+MAINTAINER Geek Pie Association @ ShnaghaiTech
 
 EXPOSE 80
 
@@ -17,8 +17,6 @@ RUN mkdir /fresh
 COPY . /fresh
 
 RUN rm -Rf /fresh/dist
-
-RUN npm config set registry http://nexus.daocloud.io/repository/daocloud-npm
 
 RUN cd /fresh \
   && npm install
