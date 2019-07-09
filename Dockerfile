@@ -22,5 +22,6 @@ EXPOSE 80
 
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY fresh.conf /etc/nginx/sites-enabled/fresh.conf
+RUN mkdir /logs
 
 COPY --from=build /fresh/dist /fresh/dist
