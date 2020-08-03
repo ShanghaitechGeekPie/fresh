@@ -16,7 +16,7 @@ RUN cd /fresh \
 
 FROM nginx:latest
 
-MAINTAINER Geek Pie Association @ ShnaghaiTech
+MAINTAINER Geek Pie Association @ ShanghaiTech
 
 EXPOSE 80
 
