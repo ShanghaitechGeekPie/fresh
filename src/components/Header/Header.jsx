@@ -44,7 +44,7 @@ class Header extends React.Component {
     });
 
     const headerContent = (this.props.level0==undefined)?
-      <div>上海科技大学<br /><b>新 生 手 册</b><br />- 2019 -<br /></div> :
+      <div>上海科技大学<br /><b>新 生 手 册</b><br />- 2020 -<br /></div> :
       <div><b>新<br />生<br />手<br />册</b></div>;
 
     const level1ContainerCls = classnames({
@@ -87,7 +87,7 @@ class Header extends React.Component {
           </Col>
           <Col span={24} className={styles.info_container}>
             © 上海科技大学 迎新网<br />
-            All Rights Reserved · 2019<br />
+            All Rights Reserved · 2020<br />
           </Col>
         </Row>
         <Row className={level1ContainerCls}>
