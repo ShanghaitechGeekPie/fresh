@@ -21,7 +21,7 @@ class Header extends React.Component {
       )
 
     menu.push(
-      <a href="http://life.shanghaitech.edu.cn/fresh/" target="_blank">
+      <a href="http://res.shanghaitech.edu.cn/yingxin/yingxin.html" target="_blank">
         <li>
           <small>返回 迎新网</small>
         </li>
