@@ -8,6 +8,7 @@ const markdown = require('../markdown/上海科技大学2020新生手册.md')
 var parseMdt = new parseMd(markdown);
 var data = parseMdt.render();
 console.log(data);
+console.log('www.wenjuan.com/s/UZBZJv0Al');
 
 class App extends React.Component {
   render() {
