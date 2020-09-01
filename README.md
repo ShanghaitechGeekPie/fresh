@@ -43,7 +43,7 @@ make sure you have run `npm install` before developing.
 npm start
 ```
 
-访问 http://127.0.0.1:8989
+访问 http://127.0.0.1:8001
 
 please remove line 52 ~ 57 in webpack.config.js and change path to relative path in src/entries/index.html before you start server.
 
