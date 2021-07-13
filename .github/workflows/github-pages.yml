@@ -43,7 +43,7 @@ jobs:
       
       - name: Invoke Deployment
         with:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          token: ${{ secrets.ACCESS_TOKEN }}
           BRANCH: gh-pages
-          FOLDER: fresh/dist/
+          FOLDER: dist
         uses: JamesIves/github-pages-deploy-action@4.1.4
