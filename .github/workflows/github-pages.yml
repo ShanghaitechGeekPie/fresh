@@ -1,0 +1,39 @@
+name: Build and deploy node site to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  github-pages:
+    runs-on: ubuntu-latest
+     strategy:
+      matrix:
+        node: [ '12', '14', '16' ]
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        uses: actions/setup-node@v2
+      - run:  |
+          cd ${{ github.workspace }}
+          npm install
+          npm run build
+
+
+           
+      - name: Move 
+        run: |
+          cd ${{ github.workspace }}
+          mv dist/assets/index.html dist/ 
+          rm -rf node_modules
+          
+      
+      - name: Invoke Deployment
+        with:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: /fresh/dist/
+        uses: JamesIves/github-pages-deploy-action@3.2.1
