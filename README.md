@@ -58,3 +58,8 @@ npm run build
 using markdown-it and parseMd
 
 file is located at src/markdown
+
+### How to update yearly 
+- `src/entries/index.html` to change title
+- `src/components/App.jsx` to change source file 
+- `src/components/Header/Header.jsx` to change ` <div>上海科技大学<br /><b>新 生 手 册</b><br />- 2018 -<br /></div> ` and  `  All Rights Reserved · 2019<br />`
