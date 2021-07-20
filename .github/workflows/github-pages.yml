@@ -3,7 +3,7 @@ name: Build and deploy node site to GitHub Pages
 on:
   push:
     branches:
-      - main
+      - master
   workflow_dispatch:
 
 jobs:
