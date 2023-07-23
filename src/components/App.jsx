@@ -3,12 +3,11 @@ import MainLayout from '../layouts/MainLayout/MainLayout';
 import parseMd from '../parseMd/parseMd';
 import NotFound from './NotFound';
 
-const markdown = require('../markdown/上海科技大学2022新生手册.md')
+const markdown = require('../markdown/上海科技大学2023新生手册.md')
 
 var parseMdt = new parseMd(markdown);
 var data = parseMdt.render();
 console.log(data);
-console.log('www.wenjuan.com/s/UZBZJv0Al');
 
 class App extends React.Component {
   render() {
