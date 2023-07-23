@@ -8,6 +8,7 @@ const markdown = require('../markdown/上海科技大学2023新生手册.md')
 var parseMdt = new parseMd(markdown);
 var data = parseMdt.render();
 console.log(data);
+console.log("https://www.wjx.cn/vm/rtb6DmO.aspx");
 
 class App extends React.Component {
   render() {
