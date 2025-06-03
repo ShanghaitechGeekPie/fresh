@@ -14,6 +14,7 @@ jobs:
 
       - name: Cache node modules
         uses: actions/cache@v2
+        continue-on-error: true
         env:
           cache-name: cache-node-modules
         with:
