@@ -10,10 +10,11 @@ jobs:
   github-pages:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4 # Updated to v4
 
       - name: Cache node modules
-        uses: actions/cache@v2
+        uses: actions/cache@v4 # Updated to v4
+        continue-on-error: true
         env:
           cache-name: cache-node-modules
         with:
@@ -26,24 +27,26 @@ jobs:
             ${{ runner.os }}-
 
       - name: Install dependencies
-        uses: actions/setup-node@v2
-      - run:  |
+        uses: actions/setup-node@v4 # Updated to v4
+        with:
+          node-version: '18' # It's good practice to specify a node version, e.g., '18' or 'lts/*'
+      - run: |
           cd ${{ github.workspace }}
           npm install
           npm run build
 
-
-           
-      - name: Move 
+      - name: Move files
         run: |
           cd ${{ github.workspace }}
-          mv dist/assets/index.html dist/ 
+          # Ensure 'dist' directory exists before moving, or handle cases where it might not
+          # This command moves index.html from dist/assets to dist/
+          mv dist/assets/index.html dist/
+          # Remove node_modules to keep the artifact clean if it's not needed for deployment
           rm -rf node_modules
-          
-      
+
       - name: Invoke Deployment
+        uses: JamesIves/github-pages-deploy-action@4.1.4 # This action version seems stable
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
           FOLDER: dist
-        uses: JamesIves/github-pages-deploy-action@4.1.4
