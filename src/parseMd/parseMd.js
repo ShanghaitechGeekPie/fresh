@@ -13,6 +13,20 @@ class parseMd {
       linkify: true, // Autoconvert URL-like text to links
       typographer: true, // Enable some language-neutral replacement + quotes beautification
     }).use(subscript).use(superscript);
+    
+    // fix image path
+    const defaultRender = this.md.renderer.rules.image;
+    this.md.renderer.rules.image = (tokens, idx, options, env, self) => {
+      const token = tokens[idx];
+      const srcIndex = token.attrIndex('src');
+      if (srcIndex >= 0) {
+        const src = token.attrs[srcIndex][1];
+        if (src.startsWith('media/')) {
+          token.attrs[srcIndex][1] = '/markdown/' + src;
+        }
+      }
+      return defaultRender(tokens, idx, options, env, self);
+    };
   }
 
   render() {
