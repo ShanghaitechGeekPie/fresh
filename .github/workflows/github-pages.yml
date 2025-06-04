@@ -43,6 +43,8 @@ jobs:
           mv dist/assets/index.html dist/
           # Remove node_modules to keep the artifact clean if it's not needed for deployment
           rm -rf node_modules
+          # Copy index.html to 404.html to handle SPA routing on GitHub Pages
+          cp dist/index.html dist/404.html
 
       - name: Invoke Deployment
         uses: JamesIves/github-pages-deploy-action@4.1.4 # This action version seems stable
