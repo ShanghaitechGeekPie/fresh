@@ -25,6 +25,17 @@ module.exports = function (webpackConfig) {
   // Markdown files will be loaded dynamically via fetch
   // No need for webpack to process them
 
+  // Fix UglifyJS error with ES6 code in node_modules/punycode
+  webpackConfig.module.loaders.push({
+    test: /\.js$/,
+    include: /node_modules\/punycode/,
+    loader: 'babel',
+    query: {
+      cacheDirectory: true,
+      presets: ['es2015']
+    }
+  });
+
 
 
   // Parse all less files as css module.
