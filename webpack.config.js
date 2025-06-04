@@ -8,6 +8,7 @@ const glob = require('glob');
 
 const subscript = require('markdown-it-sub');
 const superscript = require('markdown-it-sup');
+const MarkdownIt = require('markdown-it');
 
 module.exports = function (webpackConfig) {
   webpackConfig.babel.plugins.push('transform-runtime');
@@ -21,13 +22,21 @@ module.exports = function (webpackConfig) {
   //   loader: 'es3ify-loader',
   // });
 
-  webpackConfig.module.loaders.push({ test: /\.md$/, loader: "html!markdown-it" });
+  // Markdown files will be loaded dynamically via fetch
+  // No need for webpack to process them
 
-  webpackConfig['markdown-it'] = {
-    preset: 'default',
-    typographer: true,
-    use: [subscript, superscript]
-  };
+  // Fix UglifyJS error with ES6 code in node_modules/punycode
+  webpackConfig.module.loaders.push({
+    test: /\.js$/,
+    include: /node_modules\/punycode/,
+    loader: 'babel',
+    query: {
+      cacheDirectory: true,
+      presets: ['es2015']
+    }
+  });
+
+
 
   // Parse all less files as css module.
   webpackConfig.module.loaders.forEach(function(loader, index) {
