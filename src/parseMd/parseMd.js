@@ -23,6 +23,8 @@ class parseMd {
         const src = token.attrs[srcIndex][1];
         if (src.startsWith('media/')) {
           token.attrs[srcIndex][1] = '/markdown/' + src;
+        } else if (src.startsWith('./media/')) {
+          token.attrs[srcIndex][1] = '/markdown/' + src.substring(2); // Remove './' from the beginning
         }
       }
       return defaultRender(tokens, idx, options, env, self);
