@@ -3,30 +3,74 @@ import MainLayout from '../layouts/MainLayout/MainLayout';
 import parseMd from '../parseMd/parseMd';
 import NotFound from './NotFound';
 
-const markdown = require('../markdown/上海科技大学2025新生手册.md')
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: null,
+      loading: true,
+      error: null,
+    };
+  }
 
-var parseMdt = new parseMd(markdown);
-var data = parseMdt.render();
-console.log(data);
-console.log("https://www.wjx.cn/vm/rtb6DmO.aspx");
+  componentDidMount() {
+    this.loadMarkdown();
+  }
 
-class App extends React.Component {
+  componentDidUpdate(prevProps) {
+    if (this.props.params.level0 !== prevProps.params.level0 || this.props.params.level1 !== prevProps.params.level1) {
+      this.loadMarkdown();
+    }
+  }
+
+  loadMarkdown() {
+    this.setState({ loading: true, error: null });
+    const markdownUrl = '/markdown/上海科技大学2025新生手册.md';
+
+    fetch(markdownUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.text();
+      })
+      .then(markdownText => {
+        const parseMdt = new parseMd(markdownText);
+        const parsedData = parseMdt.render();
+        this.setState({ data: parsedData, loading: false });
+      })
+      .catch(error => {
+        console.error("Error fetching or parsing markdown:", error);
+        this.setState({ error, loading: false });
+      });
+  }
   render() {
-    if (this.props.level1)
-      if (!((this.props.params.level0 in data.children) &&
-        (this.props.params.level1 in data.children[this.props.params.level0].children)))
-      return (
-        <NotFound />
-      );
+    const { data, loading, error } = this.state;
 
-    if (this.props.level0)
-      if (!(this.props.params.level0 in data.children))
-        return (
-          <NotFound />
-        );
+    if (loading) {
+      return <div>Loading...</div>; // Or a more sophisticated loader component
+    }
+
+    if (error) {
+      return <div>Error loading content: {error.message}</div>;
+    }
+
+    if (!data) {
+      return <NotFound />;
+    }
+
+    if (this.props.params.level0 && !(this.props.params.level0 in data.children)) {
+      return <NotFound />;
+    }
+
+    if (this.props.params.level1 && 
+        (!(this.props.params.level0 in data.children) || 
+         !(this.props.params.level1 in data.children[this.props.params.level0].children))) {
+      return <NotFound />;
+    }
 
     return (
-        <MainLayout data={data} level0={this.props.params.level0} level1={this.props.params.level1} />
+      <MainLayout data={data} level0={this.props.params.level0} level1={this.props.params.level1} />
     );
   }
 };

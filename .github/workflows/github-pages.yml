@@ -41,6 +41,15 @@ jobs:
           # Ensure 'dist' directory exists before moving, or handle cases where it might not
           # This command moves index.html from dist/assets to dist/
           mv dist/assets/index.html dist/
+          # Create markdown directory in dist
+          mkdir -p dist/markdown
+          # Copy markdown files to dist/markdown
+          cp -r src/markdown/*.md dist/markdown/
+          # Copy media files if they exist
+          if [ -d "src/markdown/media" ]; then
+            mkdir -p dist/markdown/media
+            cp -r src/markdown/media/* dist/markdown/media/
+          fi
           # Remove node_modules to keep the artifact clean if it's not needed for deployment
           rm -rf node_modules
           # Copy index.html to 404.html to handle SPA routing on GitHub Pages
